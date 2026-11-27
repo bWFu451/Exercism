@@ -4,23 +4,40 @@ class HighSchoolSweetheart
 {
     public function firstLetter(string $name): string
     {
-        throw new \BadFunctionCallException("Implement the function");
-        $name->firstLetter("Jane");
-            $substr ("J");
+        return mb_substr(trim($name), 0, 1);
     }
 
     public function initial(string $name): string
     {
-        throw new \BadFunctionCallException("Implement the function");
+        return mb_strtoupper($this->firstLetter($name));
     }
 
     public function initials(string $name): string
     {
-        throw new \BadFunctionCallException("Implement the function");
+        [$first, $last] = explode(' ', trim($name));
+        return $this->initial($first) . ' ' . $this->initial($last);
     }
 
     public function pair(string $sweetheart_a, string $sweetheart_b): string
     {
-        throw new \BadFunctionCallException("Implement the function");
+        $a = $this->initials($sweetheart_a);
+        $b = $this->initials($sweetheart_b);
+
+        return <<<HEART
+                 ******       ******
+               **      **   **      **
+             **         ** **         **
+            **            *            **
+            **                         **
+            **        $a  +  $b        **
+             **                       **
+               **                   **
+                 **               **
+                   **           **
+                     **       **
+                       **   **
+                         ***
+                          *
+            HEART;
     }
 }
